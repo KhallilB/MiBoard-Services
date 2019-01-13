@@ -1,9 +1,11 @@
 require("./config/config");
 require("./models/db");
 
+const rtsIndex = require("./routes/index");
+
 //Dependencies
 const express = require("express");
-constbodyParser = require("body-parser");
+const bodyParser = require("body-parser");
 const cors = require("cors");
 
 const server = express();
@@ -11,6 +13,7 @@ const server = express();
 //Middleware
 server.use(bodyParser.json());
 server.use(cors());
+server.use("/api", rtsIndex);
 
 //Start Server
 server.listen(process.env.PORT, () => {

@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
-const User = mongoose.model("User");
+const User = require("../models/User");
 
-module.exports.register = (req, res) => {
+module.exports.signUp = (req, res) => {
   var user = new User();
   user.fullName = req.body.fullName;
   user.email = req.body.email;
@@ -11,7 +11,11 @@ module.exports.register = (req, res) => {
     if (!err) {
       res.send(doc);
     } else {
-      console.log("Error", err);
+      if (err.code == 11000) {
+        res.statust(422).send(["Duplicate Email found."]);
+      } else {
+        return err;
+      }
     }
   });
 };
