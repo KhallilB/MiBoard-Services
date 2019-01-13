@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 
 const userSchema = new mongoose.Schema({
   fullName: {
@@ -20,6 +21,16 @@ const userSchema = new mongoose.Schema({
     minlength: [6, "Password must be longer than 6 characters."]
   },
   saltSecret: String
+});
+
+userSchema.pre("save", function(next) {
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(this.password, salt, (err, hash) => {
+      this.password = hash;
+      this.saltSecret = salt;
+      next();
+    });
+  });
 });
 
 module.exports = mongoose.model("User", userSchema);
