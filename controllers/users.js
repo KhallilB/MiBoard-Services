@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
+const _ = require("lodash");
 
 const User = require("../models/User");
 
@@ -43,4 +44,19 @@ userSchema.methods.genrateJwt = function() {
       expiresIn: process.env.JWT_EXP
     }
   );
+};
+
+module.exports.userProfile = (req, res) => {
+  User.findOne({ _id: req._id }),
+    (err, user) => {
+      if (!user) {
+        return res
+          .status(404)
+          .json({ status: false, message: "User Record Not Found." });
+      } else {
+        return res
+          .status(200)
+          .json({ status: true, user: _.pick(user, ["fullName", "email"]) });
+      }
+    };
 };
