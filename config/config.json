@@ -1,0 +1,10 @@
+{
+  "development": {
+    "PORT": 3500,
+    "MONGODB_URI": "mongodb://localhost:27017/MiBoardServices"
+  },
+  "production": {
+    "PORT": 80,
+    "MONGODB_URI": "mongodb://route/DB_Name"
+  }
+}
