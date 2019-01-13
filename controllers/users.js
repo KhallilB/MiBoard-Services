@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
 
 const User = require("../models/User");
 
@@ -18,4 +19,28 @@ module.exports.signUp = (req, res) => {
       }
     }
   });
+};
+
+module.exports.authenticate = (req, res) => {
+  // Calls passport authentication
+  passport.authenticate("local", (err, user, info) => {
+    //error from passport middleware
+    if (err) return res.status(404).json(err);
+    //registered user
+    if (user) return res.status(200).json({ token: user.genrateJwt() });
+    //unknown user or wrong psasword
+    else return res.status(401).json(info);
+  });
+};
+
+userSchema.methods.genrateJwt = function() {
+  return jwt.sign(
+    {
+      _id: this._id
+    },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: process.env.JWT_EXP
+    }
+  );
 };

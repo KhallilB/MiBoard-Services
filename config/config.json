@@ -1,10 +1,14 @@
 {
   "development": {
     "PORT": 3500,
-    "MONGODB_URI": "mongodb://localhost:27017/MiBoardServices"
+    "MONGODB_URI": "mongodb://localhost:27017/MiBoardServices",
+    "JWT_SECRET": "ShVgDG72h819pns21by712ihF",
+    "JWT_EXP": "2h"
   },
   "production": {
     "PORT": 80,
-    "MONGODB_URI": "mongodb://route/DB_Name"
+    "MONGODB_URI": "mongodb://route/DB_Name",
+    "JWT_SECRET": "ShVgDG72h819pns21by712ihF",
+    "JWT_EXP": "2h"
   }
 }
