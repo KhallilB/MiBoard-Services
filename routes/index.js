@@ -5,7 +5,7 @@ const user = require("../controllers/users");
 const jwtHelper = require("../config/jwtHelper");
 
 router.post("/signup", user.signUp);
-router.post("/authenticate", user.authenticate);
+router.post("/login", user.logIn);
 
 router.get("/userProfile", jwtHelper.verifyJwtToken, user.userProfile);
 

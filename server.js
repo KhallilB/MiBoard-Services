@@ -16,6 +16,12 @@ const server = express();
 server.use(bodyParser.json());
 server.use(cors());
 server.use(passport.initialize());
+// passport.serializeUser(function(user, done) {
+//   done(null, user);
+// });
+// passport.deserializeUser(function(obj, done) {
+//   done(null, obj);
+// });
 server.use("/api", rtsIndex);
 
 //Start Server
