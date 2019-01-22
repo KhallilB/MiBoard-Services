@@ -7,8 +7,8 @@
   },
   "production": {
     "PORT": 101,
-    "MONGODB_URI": "mongodb://0.0.0.0/MiBoardServices",
-    "JWT_SECRET": "ShVgDG72h819pns21by712ihF",
+    "MONGODB_URI": "mongodb://localhost:27017/MiBoardServices",
+    "JWT_SECRET": "VcrTER213hs4a5hjalnsu78SE123",
     "JWT_EXP": "2h"
   }
 }
