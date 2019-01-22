@@ -5,6 +5,7 @@ const passport = require("passport");
 
 const User = require("../models/User");
 
+//Saves user to database and gives token
 module.exports.signUp = (req, res) => {
   const user = new User();
   user.fullName = req.body.fullName;
@@ -41,6 +42,7 @@ module.exports.logIn = (req, res) => {
   })(req, res);
 };
 
+//Sends saved user information as JSON object
 module.exports.userProfile = (req, res) => {
   User.findOne({ _id: req._id }),
     (err, user) => {
